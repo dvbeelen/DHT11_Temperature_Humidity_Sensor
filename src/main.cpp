@@ -1,4 +1,5 @@
 
+#include <MKRGSM.h>
 #include "DHT.h"
 #include <Adafruit_Sensor.h>
 
@@ -16,7 +17,7 @@ void setup() {
 
 void loop() {
  // Wait a few seconds between measurements.
-  delay(2000);
+  delay(5000);
 
   // Reading temperature or humidity takes about 250 milliseconds!
   // Sensor readings may also be up to 2 seconds 'old' (its a very slow sensor)
@@ -31,11 +32,6 @@ void loop() {
     Serial.println(F("Failed to read from DHT sensor."));
     return;
   }
-
-  // Compute heat index in Fahrenheit (the default)
-  float hif = dht.computeHeatIndex(f, h);
-  // Compute heat index in Celsius (isFahreheit = false)
-  float hic = dht.computeHeatIndex(t, h, false);
 
   Serial.print(F("Humidity: "));
   Serial.print(h);
