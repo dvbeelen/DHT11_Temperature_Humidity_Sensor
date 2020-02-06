@@ -50,21 +50,20 @@ void connect() {
 void connectMQTT() {
 //SIM not connected
     bool MQTTconnected = false;
-    Serial.println("Connecting to MQTT broker.");
+    Serial.print("\nConnecting to MQTT broker.");
 
 //SIM connecting
     while (!MQTTconnected) {
-        client.setServer(mqtt_server.c_str(), 8080);
-        client.connect(mqtt_server.c_str());
-
-    if (client.connected()) {
+        client.setServer(mqtt_server.c_str(), 1883);
+    if (client.connect("Prototype1")) {
         //SIM connected
         MQTTconnected = true;
-        Serial.print("MQTT connection state: ");
+        Serial.print("\nConnected to MQTT broker.");
+        Serial.print("\nMQTT connection state: ");
         Serial.println(client.state());
     }
     else {
-        //If SIM doesn't connect
+        //If MQTT doesn't connect
         Serial.print(".");
         delay(1000);
         }
